@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kingfigar 👑</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f0f0f;
+  color: white;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+.hidden { display: none; }
+
+button {
+  padding: 12px;
+  margin: 10px;
+  border: none;
+  border-radius: 25px;
+  background: gold;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+img {
+  width: 200px;
+  border-radius: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container" id="home">
+  <h1>Welcome to Kingfigar 👑</h1>
+  <p>What are you looking for today?</p>
+
+  <button onclick="show('traditional')">👑 Traditional Wears</button>
+  <button onclick="show('formal')">🎩 Formal & Occasion</button>
+  <button onclick="show('casual')">👕 Casual & Modern</button>
+  <button onclick="show('footwear')">👞 Footwear</button>
+</div>
+
+<!-- TRADITIONAL -->
+<div class="container hidden" id="traditional">
+  <h2>Traditional Wears</h2>
+
+  <button onclick="loadCategory('Kaftan')">Kaftan</button>
+  <button onclick="loadCategory('Agbada')">Agbada</button>
+  <button onclick="loadCategory('Senator')">Senator</button>
+
+  <br>
+  <button onclick="back()">⬅ Back</button>
+</div>
+
+<!-- FORMAL -->
+<div class="container hidden" id="formal">
+  <h2>Formal & Occasion</h2>
+
+  <button onclick="loadCategory('Suit')">Suit</button>
+  <button onclick="loadCategory('Wedding')">Wedding</button>
+
+  <br>
+  <button onclick="back()">⬅ Back</button>
+</div>
+
+<!-- CASUAL -->
+<div class="container hidden" id="casual">
+  <h2>Casual & Modern</h2>
+
+  <button onclick="loadCategory('Ready Wear')">Ready to Wear</button>
+  <button onclick="loadCategory('Jacket')">Jean Jacket</button>
+
+  <br>
+  <button onclick="back()">⬅ Back</button>
+</div>
+
+<!-- FOOTWEAR -->
+<div class="container hidden" id="footwear">
+  <h2>Footwear</h2>
+
+  <button onclick="loadCategory('Shoes')">Shoes</button>
+
+  <br>
+  <button onclick="back()">⬅ Back</button>
+</div>
+
+<!-- IMAGES -->
+<div class="container hidden" id="gallery">
+  <h2 id="categoryTitle"></h2>
+
+  <!-- REPLACE THESE IMAGES WITH YOURS -->
+  <img src="images/design1.jpg" onclick="selectDesign('Design 1')">
+  <img src="images/design2.jpg" onclick="selectDesign('Design 2')">
+  <img src="images/design3.jpg" onclick="selectDesign('Design 3')">
+
+  <br>
+
+  <button onclick="customDesign()">✨ Customize Your Own</button>
+
+  <br>
+  <button onclick="back()">⬅ Back</button>
+</div>
+
+<!-- PACKAGE -->
+<div class="container hidden" id="package">
+  <h2 id="selectedDesign"></h2>
+  <p>Choose your package</p>
+
+  <button onclick="order('Basic')">Basic</button>
+  <button onclick="order('Classic')">Classic</button>
+  <button onclick="order('Premium')">Premium 👑</button>
+</div>
+
+<!-- CUSTOM -->
+<div class="container hidden" id="custom">
+  <h2>Custom Design ✨</h2>
+
+  <p>Custom designs attract extra fees based on fabric and detailing.</p>
+
+  <button onclick="proceedCustom()">Proceed</button>
+  <button onclick="back()">Back</button>
+</div>
+
+<script>
+
+let currentCategory = "";
+let selectedDesign = "";
+
+function show(section) {
+  hideAll();
+  document.getElementById(section).classList.remove("hidden");
+}
+
+function back() {
+  hideAll();
+  document.getElementById("home").classList.remove("hidden");
+}
+
+function hideAll() {
+  let sections = document.querySelectorAll('.container');
+  sections.forEach(s => s.classList.add('hidden'));
+}
+
+function loadCategory(category) {
+  currentCategory = category;
+  hideAll();
+  document.getElementById("gallery").classList.remove("hidden");
+  document.getElementById("categoryTitle").innerText = category;
+}
+
+function selectDesign(design) {
+  selectedDesign = design;
+  hideAll();
+  document.getElementById("package").classList.remove("hidden");
+  document.getElementById("selectedDesign").innerText = design;
+}
+
+function order(type) {
+  let message = `Hi, I want ${selectedDesign} (${currentCategory}) - Package: ${type}`;
+  window.open(`https://wa.me/234XXXXXXXXXX?text=${encodeURIComponent(message)}`);
+}
+
+function customDesign() {
+  hideAll();
+  document.getElementById("custom").classList.remove("hidden");
+}
+
+function proceedCustom() {
+  let message = `Hi, I want a custom ${currentCategory} design`;
+  window.open(`https://wa.me/234XXXXXXXXXX?text=${encodeURIComponent(message)}`);
+}
+
+</script>
+
+</body>
+</html>
