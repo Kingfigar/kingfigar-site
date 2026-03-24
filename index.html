@@ -104,9 +104,7 @@ img {
   <h2 id="categoryTitle"></h2>
 
   <!-- REPLACE THESE IMAGES WITH YOURS -->
-  <img src="images/design1.jpg" onclick="selectDesign('Design 1')">
-  <img src="images/design2.jpg" onclick="selectDesign('Design 2')">
-  <img src="images/design3.jpg" onclick="selectDesign('Design 3')">
+<div id="imageContainer"></div>
 
   <br>
 
@@ -161,7 +159,25 @@ function loadCategory(category) {
   hideAll();
   document.getElementById("gallery").classList.remove("hidden");
   document.getElementById("categoryTitle").innerText = category;
+
+  let container = document.getElementById("imageContainer");
+  container.innerHTML = "";
+
+  let folder = category.toLowerCase().replace(" ", "");
+
+  for (let i = 1; i <= 5; i++) {
+    let img = document.createElement("img");
+    img.src = `images/${folder}/${folder}${i}.jpg`;
+
+    img.onerror = function () {
+      this.style.display = "none";
+    };
+
+    img.onclick = () => selectDesign(`${category} ${i}`);
+    container.appendChild(img);
+  }
 }
+
 
 function selectDesign(design) {
   selectedDesign = design;
@@ -172,7 +188,7 @@ function selectDesign(design) {
 
 function order(type) {
   let message = `Hi, I want ${selectedDesign} (${currentCategory}) - Package: ${type}`;
-  window.open(`https://wa.me/234XXXXXXXXXX?text=${encodeURIComponent(message)}`);
+  window.open(`https://wa.me/message/FASS2JSVO25WF1?text=${encodeURIComponent(message)}`);
 }
 
 function customDesign() {
@@ -182,7 +198,7 @@ function customDesign() {
 
 function proceedCustom() {
   let message = `Hi, I want a custom ${currentCategory} design`;
-  window.open(`https://wa.me/234XXXXXXXXXX?text=${encodeURIComponent(message)}`);
+  window.open(`https://wa.me/message/FASS2JSVO25WF1?text=${encodeURIComponent(message)}`);
 }
 
 </script>
