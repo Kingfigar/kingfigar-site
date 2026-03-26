@@ -163,11 +163,11 @@ function loadCategory(category) {
   let container = document.getElementById("imageContainer");
   container.innerHTML = "";
 
-  let folder = category.toLowerCase().replace(" ", "");
-
+let folder = category.toLowerCase().replace(/\s+/g, "");
   for (let i = 1; i <= 5; i++) {
     let img = document.createElement("img");
-    img.src = `images/${folder}/${folder}${i}.jpg`;
+   img.src = `images/${folder}/${folder}${i}.jpg`;
+console.log(img.src);
 
     img.onerror = function () {
       this.style.display = "none";
@@ -188,7 +188,7 @@ function selectDesign(design) {
 
 function order(type) {
   let message = `Hi, I want ${selectedDesign} (${currentCategory}) - Package: ${type}`;
-  window.open(`https://wa.me/message/FASS2JSVO25WF1?text=${encodeURIComponent(message)}`);
+  window.open(`https://wa.me/message/2349132317661?text=${encodeURIComponent(message)}`);
 }
 
 function customDesign() {
